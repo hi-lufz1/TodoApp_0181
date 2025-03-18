@@ -8,8 +8,13 @@ class TodoPage extends StatefulWidget {
 }
 
 class _TodoPageState extends State<TodoPage> {
+
+
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(title: Text("Form Page", style: TextStyle(fontSize: 24),), centerTitle: true,),
+    );
   }
 }
