@@ -9,6 +9,8 @@ class TodoPage extends StatefulWidget {
 
 class _TodoPageState extends State<TodoPage> {
 
+   String _selectedDate = "Select a date";
+
 
 
   @override
@@ -22,7 +24,10 @@ class _TodoPageState extends State<TodoPage> {
             children: [
               Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column( children: [Text("Task date")],),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [Text("Task Date:")
+                  , Text(_selectedDate)],),
                   IconButton(onPressed: (){}, icon: Icon(Icons.calendar_today, color: Colors.blue,) )
                 ],
               )
