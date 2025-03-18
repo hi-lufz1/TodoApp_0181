@@ -22,6 +22,7 @@ class _TodoPageState extends State<TodoPage> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            spacing: 16,
             children: [
               Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -33,7 +34,9 @@ class _TodoPageState extends State<TodoPage> {
                 ],
               ),
               Form(
-                child: Row( children: [
+                child: Row( 
+                  spacing: 16,
+                  children: [
               Expanded(
                   child: TextFormField(
                     controller: _nameController,
