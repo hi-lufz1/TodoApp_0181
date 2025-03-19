@@ -113,6 +113,22 @@ class _TodoPageState extends State<TodoPage> {
     );
   }
 
+  void _addTask() {
+    if (_key.currentState!.validate() && _selectedDateTime != null) {
+      setState(() {
+        _tasks.add(
+          Task(
+            id: DateTime.now().toString(),
+            name: _nameController.text,
+            deadline: _selectedDateTime!,
+          ),
+        );
+        _nameController.clear();
+        _selectedDateTime = null;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
