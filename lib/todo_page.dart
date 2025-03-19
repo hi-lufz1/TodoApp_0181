@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:scroll_date_picker/scroll_date_picker.dart';
+import 'package:intl/intl.dart';
+
+
 
 class TodoPage extends StatefulWidget {
   const TodoPage({super.key});
@@ -11,7 +15,7 @@ class _TodoPageState extends State<TodoPage> {
 
    String _selectedDate = "Select a date";
    final TextEditingController _nameController = TextEditingController();
-
+   
 
 
   @override
@@ -22,6 +26,7 @@ class _TodoPageState extends State<TodoPage> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 16,
             children: [
               Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,6 +64,7 @@ class _TodoPageState extends State<TodoPage> {
                 ]
                 ,)
               ),
+              Text("List Tasks", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),)
             ]
           ),)),
     );
