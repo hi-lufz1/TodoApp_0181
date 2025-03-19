@@ -27,6 +27,7 @@ class _TodoPageState extends State<TodoPage> {
   DateTime? _selectedDateTime;
   final DateFormat _dateFormatter = DateFormat('dd-MM-yyyy HH:mm');
   final TextEditingController _nameController = TextEditingController();
+  final List<Task> _tasks = [];
 
   void _showDateTimePicker() {
     DateTime tempDateTime = _selectedDateTime ?? DateTime.now();
