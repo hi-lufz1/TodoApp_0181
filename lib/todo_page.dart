@@ -27,9 +27,55 @@ class Task {
 
 class _TodoPageState extends State<TodoPage> {
 
-   String _selectedDate = "Select a date";
+   DateTime? _selectedDateTime;
+   final DateFormat _dateFormatter = DateFormat('dd-MM-yyyy HH:mm');
    final TextEditingController _nameController = TextEditingController();
    
+   void _showDateTimePicker() {
+    DateTime tempDateTime = _selectedDateTime ?? DateTime.now();
+    
+    showCupertinoModalPopup(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setModalState) {
+          return Container(
+            height: 250,
+            color: Colors.white,
+            child: Column( 
+              children: [
+                  Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("List Tasks", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),),
+                      IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.close))
+                    ],
+                  ),
+                SizedBox(
+                  height: 150,
+                  child: CupertinoDatePicker(
+                    mode: CupertinoDatePickerMode.dateAndTime,
+                    initialDateTime: tempDateTime,
+                    minimumDate: DateTime.now().subtract(const Duration(days: 365)),
+                    maximumDate: DateTime.now().add(const Duration(days: 365)),
+                    onDateTimeChanged: (date) {
+                      tempDateTime = date;
+                      setModalState(() {});
+                    },
+                  ),
+                ),
+                FilledButton(
+                  child: const Text('Select'),
+                  onPressed: () {
+                    setState(() => _selectedDateTime = tempDateTime);
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
 
 
   @override
@@ -48,8 +94,15 @@ class _TodoPageState extends State<TodoPage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [Text("Task Date:")
-                  , Text(_selectedDate)],),
-                  IconButton(onPressed: (){}, icon: Icon(Icons.calendar_today, color: Colors.blue,) )
+                  , Text( _selectedDateTime == null
+                            ? "Select a date"
+                            : _dateFormatter.format(_selectedDateTime!),
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                        )
+                        ],),
+                  IconButton(onPressed: _showDateTimePicker, icon: Icon(Icons.calendar_today, color: Colors.blue,) )
                 ],
               ),
               Form(
