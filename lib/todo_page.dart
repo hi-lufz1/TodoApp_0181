@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scroll_date_picker/scroll_date_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 
 
@@ -9,6 +9,20 @@ class TodoPage extends StatefulWidget {
 
   @override
   State<TodoPage> createState() => _TodoPageState();
+}
+
+class Task {
+  String id;
+  String name;
+  DateTime deadline;
+  bool isDone;
+
+  Task({
+    required this.id,
+    required this.name,
+    required this.deadline,
+    this.isDone = false,
+  });
 }
 
 class _TodoPageState extends State<TodoPage> {
