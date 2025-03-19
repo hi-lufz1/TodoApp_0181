@@ -129,6 +129,13 @@ class _TodoPageState extends State<TodoPage> {
     }
   }
 
+  void _taskStatus(String taskId) {
+    setState(() {
+      final taskIndex = _tasks.indexWhere((t) => t.id == taskId);
+      _tasks[taskIndex].isDone = !_tasks[taskIndex].isDone;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
