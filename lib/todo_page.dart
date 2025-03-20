@@ -195,13 +195,80 @@ class _TodoPageState extends State<TodoPage> {
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                       ),
                     ),
-                    FilledButton(onPressed: () {}, child: Text("Submit")),
+                    FilledButton(onPressed: _addTask, child: Text("Submit")),
                   ],
                 ),
               ),
               Text(
                 "List Tasks",
                 style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _tasks.length,
+                  itemBuilder: (context, index) {
+                    final task = _tasks[index];
+                    return Container(
+                      padding: const EdgeInsets.all(16),
+                      margin: const EdgeInsets.symmetric(vertical: 8),
+                      decoration: BoxDecoration(
+                        color:
+                            task.isDone ? Colors.green[100] : Colors.grey[300],
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      task.name,
+                                      style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                        decoration:
+                                            task.isDone
+                                                ? TextDecoration.lineThrough
+                                                : TextDecoration.none,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Deadline: ${_dateFormatter.format(task.deadline)}",
+                                      style: TextStyle(
+                                        color:
+                                            task.isDone
+                                                ? Colors.green[800]
+                                                : Colors.red,
+                                      ),
+                                    ),
+                                    Text(
+                                      task.isDone ? "Done" : "Not Done",
+                                      style: TextStyle(
+                                        color:
+                                            task.isDone
+                                                ? Colors.green
+                                                : Colors.red,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Checkbox(
+                                value: task.isDone,
+                                onChanged: (value) => _taskStatus(task.id),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
             ],
           ),
