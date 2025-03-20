@@ -130,6 +130,11 @@ class _TodoPageState extends State<TodoPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: const Text('Tugas berhasil ditambahkan!'),
+          backgroundColor: Colors.green,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
         ),
       );
     }
