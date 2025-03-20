@@ -204,8 +204,8 @@ class _TodoPageState extends State<TodoPage> {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                           ),
-                          label: Text("First Name"),
-                          hintText: "Enter your first name",
+                          label: Text("Task"),
+                          hintText: "Masukkan tugas",
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
