@@ -29,6 +29,7 @@ class _TodoPageState extends State<TodoPage> {
   final TextEditingController _nameController = TextEditingController();
   final List<Task> _tasks = [];
   final _key = GlobalKey<FormState>();
+  bool _showDateError = false;
 
   void _showDateTimePicker() {
     DateTime tempDateTime = _selectedDateTime ?? DateTime.now();
@@ -114,6 +115,10 @@ class _TodoPageState extends State<TodoPage> {
   }
 
   void _addTask() {
+    setState(() {
+      _showDateError = _selectedDateTime == null;
+    });
+
     if (_key.currentState!.validate() && _selectedDateTime != null) {
       setState(() {
         _tasks.add(
@@ -174,6 +179,11 @@ class _TodoPageState extends State<TodoPage> {
                             : _dateFormatter.format(_selectedDateTime!),
                         style: TextStyle(fontSize: 16),
                       ),
+                      if (_showDateError)
+                        const Text(
+                          'Please select a date',
+                          style: TextStyle(color: Colors.red, fontSize: 12),
+                        ),
                     ],
                   ),
                   IconButton(
