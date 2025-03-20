@@ -126,6 +126,12 @@ class _TodoPageState extends State<TodoPage> {
         _nameController.clear();
         _selectedDateTime = null;
       });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: const Text('Tugas berhasil ditambahkan!'),
+        ),
+      );
     }
   }
 
